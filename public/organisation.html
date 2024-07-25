@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Site</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  
+</head>
+
+<style>
+
+</style>
+<body>
+    <div class="container p-5 p-5 p-5">
+        <div class="row">
+            <div class="col-10">
+                <table class="table tab ml-5 m-5">
+                    <tr class="bg-success">
+                        <th class="padding">Venue</th>
+                        <th>Availability</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Booked By</th>
+                        <th>Contact No</th>
+                        <th>Book</th>
+                        <th>Free</th>
+                    </tr>
+                    <tr  class="table-primary">
+                        <td>
+                            AB1
+                        </td>
+                        <td id="availability4">
+                            Booked!
+                        </td>
+                        <td id="start1">
+                            8 PM
+                        </td>
+                        <td id="end1">
+                            10 PM
+                        </td>
+                        <td id="booked1">
+                            Anil
+                        </td>
+                        <td id="phno1">
+                            23456789123
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" id="button1">Book</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" id="button11">Free</a>
+                        </td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>
+                            AB2
+                        </td>
+                        <td id="availability2">
+                            Booked!
+                        </td>
+                        <td id="start2">
+                            6 PM
+                        </td>
+                        <td id="end2">
+                            8 PM
+                        </td>
+                        <td id="booked2">
+                            Srikanth
+                        </td>
+                        <td id="phno2">
+                            99875644312
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" id="button2">Book</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" id="button22">Free</a>
+                        </td>
+                    </tr>
+                    <tr class="table-danger">
+                        <td>
+                            CSE DEPT
+                        </td>
+                        <td>
+                       		Booked!	
+                        </td>
+                        <td>
+                            7 PM
+                        </td>
+                        <td>
+                            9 PM
+                        </td>
+                        <td>
+                           Ajithesh
+                        </td>
+                        <td>
+                            985457342
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" id="button3">Book</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" id="button33">Free</a>
+                        </td>
+                    </tr>
+                    <tr class="table-warning">
+                        <td>
+                            SAC
+                        </td>
+                        <td id="availability1">
+                            FREE
+                        </td>
+                        <td>
+                            4 PM
+                        </td>
+                        <td>
+                            7 PM
+                        </td>
+                        <td id="name1">
+                            --
+                        </td>
+                        <td id="phno4">
+                            ---
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" id="button4">Book</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" id="button44">Free</a>
+                        </td>
+                    </tr>
+              
+                </table>
+            </div>
+        </div>
+        
+    </div>
+    
+<script>
+	let button = document.getElementById('button4');
+	let name = document.getElementById('name1');
+	let phno = document.getElementById('phno4');
+	let avail =  document.getElementById('availability1');
+	let avail4 = document.getElementById('availability4');
+	
+	let freeBut1 = document.getElementById('button11');
+	let start1 = document.getElementById('start1');
+	let end1 = document.getElementById('end1');
+	let name1 = document.getElementById('booked1');
+	let phno1 = document.getElementById('phno1');
+	
+	let freeBut2 = document.getElementById('button22');
+	let avail2 = document.getElementById('availability4');
+	let start2 = document.getElementById('start2');
+	let end2 = document.getElementById('end2');
+	let name2 = document.getElementById('booked2');
+	let phno2 = document.getElementById('phno2');
+	button.onclick = function(){
+		button.textContent = "Booked!!";
+		name.textContent = "Charan";
+		phno.textContent = "9987678960";
+		button.classList.remove('btn-primary');
+		button.style.border = "None";
+		button.style.display = "inline";
+		avail.textContent = "Booked!";
+		
+	}
+	freeBut1.onclick = function(){
+		avail4.textContent = "FREE!";
+		start1.textContent = "---";
+		end1.textContent = "---";
+		name1.textContent = "---";
+		phno1.textContent = "---";
+	}
+	freeBut2.onclick = function(){
+		avail2.textContent = "FREE!";
+		start2.textContent = "---";
+		end2.textContent = "---";
+		name2.textContent = "---";
+		phno2.textContent = "---";
+	}
+	console.log(location.textContent);
+</script>
+    
+</body>
+</html>

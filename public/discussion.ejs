@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discussions</title>
+    <link rel="stylesheet" href="/discussion.css">
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" class="questionInput" placeholder="Ask if you have any queries...">
+      <div style="text-align: right; margin-right: 18px;">
+        <button class="ask-button">Ask Doubt</button>
+      </div>
+      <h2 style="color: blue;font-weight: bold;">Frequently Asked Questions</h2>
+      
+      <div style="display: flex;align-items: center;justify-content: space-between;">
+      <div class="accordion">
+        <div class="accordion-item">
+          <button id="accordion-button-1" aria-expanded="false">
+            <span class="accordion-title">vefhmdgjnvrelfnvj.le,hfngk;vjlkre?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+              Ut tortor pretium viverra suspendisse potenti.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-2" aria-expanded="false">
+            <span class="accordion-title">vierkgjb4itlekguo4tekgikhe</span>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+              Ut tortor pretium viverra suspendisse potenti.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-3" aria-expanded="false">
+            <span class="accordion-title">jv,egkbvo;rlhgtulgo4tke</span>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+              Ut tortor pretium viverra suspendisse potenti.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-4" aria-expanded="false">
+            <span class="accordion-title">vuefjhbtilekfghltiuekt4hekgk</span>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+              Ut tortor pretium viverra suspendisse potenti.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-5" aria-expanded="false">
+            <span class="accordion-title">vceugysfliekhvikgehbvikheg</span>
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+              Ut tortor pretium viverra suspendisse potenti.
+            </p>
+          </div>
+        </div>
+      </div>
+      <img src="discussions.svg" style="width: auto;height: 300px;"/>
+      </div>
+    </div>
+    <script>
+        const items = document.querySelectorAll('.accordion button');
+        function toggleAccordion() {
+        const itemToggle = this.getAttribute('aria-expanded');
+        for (i = 0; i < items.length; i++) {
+            items[i].setAttribute('aria-expanded', 'false');
+        }
+        if (itemToggle == 'false') {
+            this.setAttribute('aria-expanded', 'true');
+        }
+        }
+        items.forEach((item) => item.addEventListener('click', toggleAccordion));
+    </script>
+  </body>
+</html>

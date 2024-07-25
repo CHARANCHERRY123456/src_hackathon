@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Event Feedback</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link rel="stylesheet" href="urike.css">
+    <style>
+
+.feedback-container {
+    /* background-color: #f0f0f0; */
+    display: flex;
+    padding: 8px;
+    flex-direction: column;
+    gap: 20px;
+    width: 450px;
+    border: 0px solid black;
+    max-width: 100%;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30%;
+}
+
+.form-container {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+.navbar-light{
+    background-color: white !important;
+}    
+.navbar-toggler-icon{
+    color: white !important;
+    outline: none;
+}
+.navbar-logo {
+    height: 70px;
+    width: 70px;
+}
+.nav-item{
+    color: blueviolet!important;
+    font-family: "Roboto" !important;
+    font-weight: bold !important;
+
+}
+.nav-link{
+    transition: color 0.5s,background-color 0.5s,border-radius 0.5s;
+}
+.nav-link:hover {
+    background-color: blueviolet;
+    color: white !important;
+    border-radius: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <center><h2 style="padding: 10px;">Event Feedback</h2></center>
+        <form method="post" action="/login/home/feedback" id="feedback-form">
+            <label for="name">Name:</label>
+            <input type="text" id="student-name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="student-email" name="email" required>
+
+            <label for="eventname">Event Name:</label>
+            <input type="text" id="event-name" name="eventname" required>
+
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="" disabled selected>Select a rating</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+</body>
+</html>
