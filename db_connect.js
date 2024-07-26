@@ -20,7 +20,6 @@ const studentSignupSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    unique: true,
     required: true,
   },
   branch: {
@@ -42,12 +41,45 @@ const studentSignupSchema = new mongoose.Schema({
 
 const StudentSignup = mongoose.model('StudentSignup', studentSignupSchema);
 
+const facultySignupSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  branch: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    minlength: 2,
+    required: true,
+  },
+  role: {
+    type: String,
+    required: true,
+  }
+}, {
+  collection: 'facultysignup'
+});
+const FacultySignup = mongoose.model('facultySignup', facultySignupSchema);
+
+
 export async function  do_signup(req, res) {
   console.log(req.body);
   try {
     const { name, email, role, branch, password } = req.body;
-    if (role == "Student") {
+    if (role == "student") {
       const newUser = new StudentSignup({ name, email, branch, password, role });
+      await newUser.save();
+    }
+    else if (role == "faculty") {
+      const newUser = new FacultySignup({ name, email, branch, password, role });
       await newUser.save();
     }
     res.render(__dirname+ "/public/home.ejs", {
@@ -57,6 +89,7 @@ export async function  do_signup(req, res) {
     res.status(500).send(err);
   }
 };
+
 
 
 export async function do_signin(req, res) {
