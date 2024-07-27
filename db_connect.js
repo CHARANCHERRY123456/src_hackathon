@@ -4,8 +4,11 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+
+const atlas_uri = "mongodb+srv://cherrycharan238:CHERRYCHARAN2380@cluster0.tavn5wb.mongodb.net/srchackathon"
+const compass_uri = "mongodb://localhost:27017/srchacakathon"
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://cherrycharan238:CHERRYCHARAN2380@cluster0.tavn5wb.mongodb.net/srchackathon').then(() => {
+mongoose.connect(atlas_uri).then(() => {
     console.log('MongoDB connected...');
 }).catch(err => {
     console.error('Connection error', err.message);
@@ -38,9 +41,7 @@ const studentSignupSchema = new mongoose.Schema({
 }, {
   collection: 'studentsignup'
 });
-
 const StudentSignup = mongoose.model('StudentSignup', studentSignupSchema);
-
 const facultySignupSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -120,4 +121,29 @@ export async function do_signin(req, res) {
   }
 
 
+
+  // home files will come here 
+const organisationSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true
+  }
+});
+
+const Organiser = mongoose.models.Organiser || mongoose.model('Organiser', organisationSchema);
+
+export async function add_organiser(req , res){
+  try {
+    const studentEmail  = req.body.email;
+    console.log(studentEmail);
+    const organisation = new Organiser({
+      email:studentEmail
+    });
+    await organisation.save();
+    res.render(__dirname+ "/public/home.ejs");
+  } catch (error) {
+    res.status(500).send('Error submitting emails: ' + error.message);
+  }
+
+}
 

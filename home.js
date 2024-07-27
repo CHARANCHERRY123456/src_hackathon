@@ -1,4 +1,3 @@
-import path from "path";
 import mongoose from "mongoose";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -10,7 +9,6 @@ mongoose.connect('mongodb+srv://cherrycharan238:CHERRYCHARAN2380@cluster0.tavn5w
 }).catch(err => {
     console.error('Connection error', err.message);
 });
-
 
 // models/Event.js
 
@@ -31,16 +29,7 @@ const Event = mongoose.model('Event', eventSchema);
 export async function add_event(req, res){
     const { eventname, venue, date, starttime, endtime, taskname, assignee, deadline } = req.body;
     console.log(req.bdoy);
-    const newEvent = new Event({
-        eventname,
-        venue,
-        date,
-        starttime,
-        endtime,
-        taskname,
-        assignee,
-        deadline
-    });
+    const newEvent = new Event({eventname,venue,date,starttime,endtime,taskname,assignee,deadline});
     try {
         await newEvent.save();
         res.render(__dirname+ "/public/organisation.ejs");
@@ -105,9 +94,9 @@ export async function feedback_submit(req, res){
   const Organisation = mongoose.model('Organisation', organisationSchema);
 
 export async function add_organiser(req , res){
+  console.log("enterd here and delte ti after checking");
   try {
     const { studentEmail } = req.body;
-
     const organisationData = {
       studentEmail
     };
@@ -120,6 +109,8 @@ export async function add_organiser(req , res){
   }
 
 } 
+
+
 export  function get_discussions(req , res){
     res.render(path.join(__dirname,'/public/discussion.ejs') , {
         what : "sign up"

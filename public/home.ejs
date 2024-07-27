@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="Logonew.png">
+  <link rel="icon" type="image/png" href="/Logonew.png">
   <title>event maganement</title>
-  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="/home.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -14,10 +14,15 @@
     
 </head>
 <body >
+    <h1>
+        <% if(locals.user_name){ %>
+             <%=user_name%>
+        <% } %>
+    </h1>
     <nav class=" navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-              <img src="Logonew.png" class="navbar-logo" />
+              <img src="/Logonew.png" alt="rgutk-logo" class="navbar-logo" />
                 RGUKT   EVENTS
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,14 +30,14 @@
             </button>
             <div class="collapse navbar-collapse mr-auto" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto text-center">
-                    <a class="nav-link nav-item ml-2" href="faculty.html">Faculty</a>
+                    <a class="nav-link nav-item ml-2" href="/faculty.html">Faculty</a>
                     <a class="nav-link active nav-item ml-2" href="#">
                         Home
                         <span class="sr-only">(current)</span>
                     </a>
-                    <a class="nav-link nav-item ml-2" href="organisation.html">Organising</a>
-                    <a class="nav-link nav-item ml-2" href="dashboard.html">dashboard</a>
-                    <a class="nav-link nav-item ml-2" href="discussion.html">Discussions</a>
+                    <a class="nav-link nav-item ml-2" href="/organisation.html">Organising</a>
+                    <a class="nav-link nav-item ml-2" href="/dashboard.html">dashboard</a>
+                    <a class="nav-link nav-item ml-2" href="/discussion.html">Discussions</a>
                 </div>
                 <form class="form-inline my-2 my-lg-0 ml-auto">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -45,7 +50,7 @@
 
         <p>
           <pre>
-            recently <strong >Hackathon</strong> has completed give review on it  <a href="feedback.html">feedback</a>
+            recently <strong >Hackathon</strong> has completed give review on it  <a href="/feedback.html">feedback</a>
           </pre>
         </p>
     <div id="sectionPreEvents" class="pre-events p-3">
@@ -121,7 +126,7 @@
             <div class="row pt-3 pb-3">
                 <div class="col-12 col-md-6 order-1 order-md-2">
                     <div class="d-flex flex-row justify-content-center">
-                        <img src="crowd.jpg" class="opt-contr-image w-95" />
+                        <img src="/crowd.jpg" class="opt-contr-image w-95" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-2 order-md-1">
@@ -133,7 +138,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-3 mt-3">
                     <div class="d-flex flex-row justify-content-center">
-                        <img src="food.jpg" class="opt-contr-image w-95" />
+                        <img src="/food.jpg" class="opt-contr-image w-95" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-4">
@@ -147,7 +152,7 @@
             <div class="row  pt-3 pb-3">
                 <div class="col-12 col-md-6 order-1 order-md-2">
                     <div class="d-flex flex-row justify-content-center">
-                        <img src="hospitality.jpg" class="opt-contr-image w-95" />
+                        <img src="/hospitality.jpg" class="opt-contr-image w-95" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-2 order-md-1">
@@ -159,7 +164,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-3 mt-3">
                     <div class="d-flex flex-row justify-content-center">
-                        <img src="finance.jpg" class="opt-contr-image w-95" />
+                        <img src="/finance.jpg" class="opt-contr-image w-95" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-4">
