@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -7,7 +7,7 @@ const a_uri = "mongodb+srv://cherrycharan238:CHERRYCHARAN2380@cluster0.tavn5wb.m
 const c_uri = "mongodb://localhost:27017/srchacakathon"
 
 // Connect to MongoDB
-mongoose.connect(a_uri).then(() => {
+mongoose.connect(c_uri).then(() => {
     console.log('MongoDB connected...');
 }).catch(err => {
     console.error('Connection error', err.message);
@@ -84,18 +84,16 @@ export async function feedback_submit(req, res){
     } catch (error) {
       res.status(500).send('Error submitting feedback: ' + error.message);
     }
-  };
+};
   
 
-  const organisationSchema = new mongoose.Schema({
+const organisationSchema = new mongoose.Schema({
     email: {
       type: String,
       required: true
     }
-  });
-  
-  const Organisation = mongoose.model('Organisation', organisationSchema);
-
+});
+const Organisation = mongoose.model('Organisation', organisationSchema);
 export async function add_organiser(req , res){
   console.log("enterd here and delte ti after checking");
   try {
@@ -121,3 +119,22 @@ export  function get_discussions(req , res){
 }
 
 
+// adding volunteer 
+
+const VolunteerSchema = new mongoose.Schema({
+username : {type:String , required : true},
+event :  {type:String},
+role : {type:String},
+date : {type : Date}
+})
+const Volunteer = mongoose.model("Volunteer" , VolunteerSchema);
+export async function add_volunteer(req , res){
+try{
+const {username , event , role , date} = req.body;
+const volunteerdata =new Volunteer({username , event , role , date});
+await volunteerdata.save();
+res.render(__dirname+"/public/home.ejs");
+}catch (error) {
+res.status(500).send('Error submitting emails: ' + error.message);
+}
+}
