@@ -80,7 +80,7 @@ export async function feedback_submit(req, res){
       };
       const feedback = new Feedback(feedbackData);
       await feedback.save();
-      res.status(200).send('Feedback submitted successfully!');
+      res.render(__dirname+"/public/home.ejs");
     } catch (error) {
       res.status(500).send('Error submitting feedback: ' + error.message);
     }
