@@ -125,5 +125,68 @@
 
 
   </script>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const response = await fetch('/venues');
+      const venues = await response.json();
+      const table = document.getElementById('venueTable');
+      venues.forEach(venue => {
+        const row = document.createElement('tr');
+        row.dataset.id = venue._id;
+        row.innerHTML = `
+          <td>${venue.name}</td>
+          <td id="availability${venue._id}">${venue.availability}</td>
+          <td id="start${venue._id}">${venue.startTime}</td>
+          <td id="end${venue._id}">${venue.endTime}</td>
+          <td id="booked${venue._id}">${venue.bookedBy}</td>
+          <td id="phno${venue._id}">${venue.contactNo}</td>
+          <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
+          <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
+        `;
+        table.appendChild(row);
+      });
+    });
+
+    async function bookClass(button) {
+      const rowId = button.closest('tr').dataset.id;
+      const response = await fetch('/book', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          rowId,
+          startTime: '10:00 AM', // This should come from a form or user input
+          endTime: '12:00 PM' // This should come from a form or user input
+        })
+      });
+      const data = await response.json();
+      updateRow(data);
+    }
+
+    async function freeClass(button) {
+      const rowId = button.closest('tr').dataset.id;
+      const response = await fetch('/free', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ rowId })
+      });
+      const data = await response.json();
+      updateRow(data);
+    }
+
+    function updateRow(data) {
+      const row = document.querySelector(`tr[data-id='${data._id}']`);
+      row.querySelector(`#availability${data._id}`).textContent = data.availability;
+      row.querySelector(`#start${data._id}`).textContent = data.startTime;
+      row.querySelector(`#end${data._id}`).textContent = data.endTime;
+      row.querySelector(`#booked${data._id}`).textContent = data.bookedBy;
+      row.querySelector(`#phno${data._id}`).textContent = data.contactNo;
+    }
+  </script>
 </body>
 </html>
+charan

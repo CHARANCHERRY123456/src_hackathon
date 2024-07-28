@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const atlas_uri = "mongodb+srv://cherrycharan238:CHERRYCHARAN2380@cluster0.tavn5wb.mongodb.net/srchackathon"
 const compass_uri = "mongodb://localhost:27017/srchacakathon"
 // Connect to MongoDB
-mongoose.connect(compass_uri).then(() => {
+mongoose.connect(atlas_uri).then(() => {
     console.log('MongoDB connected...');
 }).catch(err => {
     console.error('Connection error', err.message);
