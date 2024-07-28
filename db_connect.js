@@ -5,10 +5,10 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
-const atlas_uri = "mongodb+srv://cherrycharan238:CHERRYCHARAN2380@cluster0.tavn5wb.mongodb.net/srchackathon"
-const compass_uri = "mongodb://localhost:27017/srchacakathon"
+const a_uri = "mongodb+srv://cherrycharan238:CHERRYCHARAN2380@cluster0.tavn5wb.mongodb.net/srchackathon"
+const c_uri = "mongodb://localhost:27017/srchacakathon"
 // Connect to MongoDB
-mongoose.connect(atlas_uri).then(() => {
+mongoose.connect(a_uri).then(() => {
     console.log('MongoDB connected...');
 }).catch(err => {
     console.error('Connection error', err.message);
@@ -69,7 +69,6 @@ const facultySignupSchema = new mongoose.Schema({
   collection: 'facultysignup'
 });
 const FacultySignup = mongoose.model('facultySignup', facultySignupSchema);
-
 
 export async function  do_signup(req, res) {
   console.log(req.body);

@@ -29,7 +29,7 @@
                         <td id="booked1">Anil</td>
                         <td id="phno1">23456789123</td>
                         <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
-                        <td><a class="btn btn-secondary">Free</a></td>
+                        <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
                     </tr>
                     <tr data-id="2" id="row-2" class="table-secondary">
                         <td>AB2</td>
@@ -39,7 +39,7 @@
                         <td id="booked2">Srikanth</td>
                         <td id="phno2">99875644312</td>
                         <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
-                        <td><a class="btn btn-secondary">Free</a></td>
+                        <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
                     </tr>
                     <tr data-id="3" id="row-3" class="table-danger">
                         <td>CSE DEPT</td>
@@ -49,7 +49,7 @@
                         <td id="booked3">Ajithesh</td>
                         <td id="phno3">985457342</td>
                         <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
-                        <td><a class="btn btn-secondary">Free</a></td>
+                        <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
                     </tr>
                     <tr data-id="4" id="row-4" class="table-warning">
                         <td>SAC</td>
@@ -59,7 +59,7 @@
                         <td id="name4">--</td>
                         <td id="phno4">---</td>
                         <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
-                        <td><a class="btn btn-secondary">Free</a></td>
+                        <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
                     </tr>
                 </table>
             </div>
@@ -122,71 +122,55 @@
     console.error('Error:', error);
   }
 }
+async function freeClass(button) {
+  // Get the row ID from the closest <tr> element
+  const rowId = button.closest('tr').dataset.id;
 
+  console.log('Clicked row ID:', rowId); // Debugging
 
-  </script>
-
-   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const response = await fetch('/venues');
-      const venues = await response.json();
-      const table = document.getElementById('venueTable');
-      venues.forEach(venue => {
-        const row = document.createElement('tr');
-        row.dataset.id = venue._id;
-        row.innerHTML = `
-          <td>${venue.name}</td>
-          <td id="availability${venue._id}">${venue.availability}</td>
-          <td id="start${venue._id}">${venue.startTime}</td>
-          <td id="end${venue._id}">${venue.endTime}</td>
-          <td id="booked${venue._id}">${venue.bookedBy}</td>
-          <td id="phno${venue._id}">${venue.contactNo}</td>
-          <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
-          <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
-        `;
-        table.appendChild(row);
-      });
+  try {
+    const response = await fetch('/free-class', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ rowId })
     });
 
-    async function bookClass(button) {
-      const rowId = button.closest('tr').dataset.id;
-      const response = await fetch('/book', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          rowId,
-          startTime: '10:00 AM', // This should come from a form or user input
-          endTime: '12:00 PM' // This should come from a form or user input
-        })
-      });
-      const data = await response.json();
-      updateRow(data);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
 
-    async function freeClass(button) {
-      const rowId = button.closest('tr').dataset.id;
-      const response = await fetch('/free', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ rowId })
-      });
-      const data = await response.json();
-      updateRow(data);
-    }
+    const data = await response.json();
 
-    function updateRow(data) {
-      const row = document.querySelector(`tr[data-id='${data._id}']`);
-      row.querySelector(`#availability${data._id}`).textContent = data.availability;
-      row.querySelector(`#start${data._id}`).textContent = data.startTime;
-      row.querySelector(`#end${data._id}`).textContent = data.endTime;
-      row.querySelector(`#booked${data._id}`).textContent = data.bookedBy;
-      row.querySelector(`#phno${data._id}`).textContent = data.contactNo;
+    // Debugging: Log the data received from the server
+    console.log('Data received:', data);
+
+    // Update the table with the data returned from the server
+    const row = document.querySelector(`tr[data-id='${rowId}']`);
+    if (row) {
+      const availabilityCell = row.querySelector(`#availability${rowId}`);
+      const startCell = row.querySelector(`#start${rowId}`);
+      const endCell = row.querySelector(`#end${rowId}`);
+      const bookedCell = row.querySelector(`#booked${rowId}`);
+      const phnoCell = row.querySelector(`#phno${rowId}`);
+
+      // Check if cells exist before setting textContent
+      if (availabilityCell) availabilityCell.textContent = "Free!!"
+      if (startCell) startCell.textContent = "----";
+      if (endCell) endCell.textContent = "----";
+      if (bookedCell) bookedCell.textContent = "----";
+      if (phnoCell) phnoCell.textContent = "----";
+      else console.error('Some cells were not found for row ID:', rowId);
+    } else {
+      console.error('Row not found for ID:', rowId);
     }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+  
   </script>
+
 </body>
 </html>
-charan

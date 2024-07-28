@@ -54,6 +54,12 @@ app.post('/book-class', (req, res) => {
     res.json(data[rowId] || {});
   });
 
+    app.post('/free-class', (req, res) => {
+        res.json({})
+
+    // Send the data for the specified rowId
+    });
+
 app.get('/', (req, res) => {
     res.render(path.join(__dirname, '/public/index.ejs') , {
         what : "sign up"

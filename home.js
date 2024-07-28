@@ -3,8 +3,11 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+const a_uri = "mongodb+srv://cherrycharan238:CHERRYCHARAN2380@cluster0.tavn5wb.mongodb.net/srchackathon"
+const c_uri = "mongodb://localhost:27017/srchacakathon"
+
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://cherrycharan238:CHERRYCHARAN2380@cluster0.tavn5wb.mongodb.net/srchackathon').then(() => {
+mongoose.connect(a_uri).then(() => {
     console.log('MongoDB connected...');
 }).catch(err => {
     console.error('Connection error', err.message);
