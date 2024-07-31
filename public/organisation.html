@@ -3,182 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bootstrap Site</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <title>Organisation Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container p-5">
-        <div class="row">
-            <div class="col-10">
-                <table class="table tab ml-5">
-                    <tr class="bg-success">
-                        <th class="padding">Venue</th>
-                        <th>Availability</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Booked By</th>
-                        <th>Contact No</th>
-                        <th>Book</th>
-                        <th>Free</th>
-                    </tr>
-                    <tr data-id="1" id="row-1" class="table-primary">
-                        <td>AB1</td>
-                        <td id="availability1">Booked!</td>
-                        <td id="start1">8 PM</td>
-                        <td id="end1">10 PM</td>
-                        <td id="booked1">Anil</td>
-                        <td id="phno1">23456789123</td>
-                        <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
-                        <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
-                    </tr>
-                    <tr data-id="2" id="row-2" class="table-secondary">
-                        <td>AB2</td>
-                        <td id="availability2">Booked!</td>
-                        <td id="start2">6 PM</td>
-                        <td id="end2">8 PM</td>
-                        <td id="booked2">Srikanth</td>
-                        <td id="phno2">99875644312</td>
-                        <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
-                        <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
-                    </tr>
-                    <tr data-id="3" id="row-3" class="table-danger">
-                        <td>CSE DEPT</td>
-                        <td id="availability3">Booked!</td>
-                        <td id="start3">7 PM</td>
-                        <td id="end3">9 PM</td>
-                        <td id="booked3">demo</td>
-                        <td id="phno3">985457342</td>
-                        <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
-                        <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
-                    </tr>
-                    <tr data-id="4" id="row-4" class="table-warning">
-                        <td>SAC</td>
-                        <td id="availability4">FREE</td>
-                        <td id="start4">4 PM</td>
-                        <td id="end4">7 PM</td>
-                        <td id="booked4">--</td>
-                        <td id="phno4">---</td>
-                        <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
-                        <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
-                    </tr>
-                  </table>
-            </div>
-        </div>
+  <div class="container p-5">
+    <div class="row">
+      <div class="col-12">
+        <table class="table">
+          <thead>
+            <tr class="bg-success text-white">
+              <th>Venue</th>
+              <th>Availability</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Booked By</th>
+              <th>Contact No</th>
+              <th>Book</th>
+              <th>Delete</th>
+            </tr> 
+          </thead>
+          <tbody id="organisationTable">
+            <!-- Rows will be populated by JavaScript -->
+          </tbody>
+        </table>
+        <h2>add new location with given form</h2>
+      </div>
     </div>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <div class="row mt-4">
+      <div class="col-12">
+        <form id="organisationForm">
+          <div class="mb-3">
+            <label for="venue" class="form-label">Venue</label>
+            <input value="AB1" type="text" class="form-control" id="venue" name="venue" required>
+          </div>
+          <div class="mb-3">
+            <label for="availability" class="form-label">Availability</label>
+            <input value="Booked" type="text" class="form-control" id="availability" name="availability" required>
+          </div>
+          <div class="mb-3">
+            <label for="start" class="form-label">Start Time</label>
+            <input value="10.30" type="text" class="form-control" id="start" name="start" required>
+          </div>
+          <div class="mb-3">
+            <label for="end" class="form-label">End Time</label>
+            <input value="12.45" type="text" class="form-control" id="end" name="end" required>
+          </div>
+          <div class="mb-3">
+            <label for="booked" class="form-label">Booked By</label>
+            <input value="demo@123" type="text" class="form-control" id="booked" name="booked" required>
+          </div>
+          <div class="mb-3">
+            <label for="phno" class="form-label">Contact No</label>
+            <input value="1234567" type="text" class="form-control" id="phno" name="phno" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
   <script>
-    async function bookClass(button) {
-  // Get the row ID from the closest <tr> element
-  const rowId = button.closest('tr').dataset.id;
-
-  console.log('Clicked row ID:', rowId); // Debugging
-
-  if (!rowId) {
-    console.error('Row ID is undefined or not set');
-    return;
-  }
-
-  try {
-    console.log("it is  returning");
-    const row = document.querySelector(`tr[data-id='${rowId}']`);
-    const pre_availabilityCell = row.querySelector(`#availability${rowId}`);
-    if(pre_availabilityCell.textContent == "FREE"){
-      console.log("it is not returning");
-      const response = await fetch('/book-class', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ rowId })
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-
-      // Debugging: Log the data received from the server
-      console.log('Data received:', data);
-
-      // Update the table with the data returned from the server
-      if (row) {
-        const availabilityCell = row.querySelector(`#availability${rowId}`);
-        const startCell = row.querySelector(`#start${rowId}`);
-        const endCell = row.querySelector(`#end${rowId}`);
-        const bookedCell = row.querySelector(`#booked${rowId}`);
-        const phnoCell = row.querySelector(`#phno${rowId}`);
-
-        // Check if cells exist before setting textContent
-        if (availabilityCell) availabilityCell.textContent = data.availability;
-        if (startCell) startCell.textContent = data.startTime;
-        if (endCell) endCell.textContent = data.endTime;
-        console.log(bookedCell);
-        if (bookedCell) bookedCell.textContent = data.bookedBy;
-        if (phnoCell) phnoCell.textContent = data.contactNo;
-        else console.error('Some cells were not found for row ID:', rowId);
-      } else {
-        console.error('Row not found for ID:', rowId);
-      }
+    document.addEventListener('DOMContentLoaded',async () => {
+      // Fetch existing venues and populate the table
+      try {
+    const response = await fetch('/getOrganisations');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
+    const organisations = await response.json();
+    const table = document.getElementById('organisationTable');
+    organisations.forEach((organisation, index) => {
+      const newRow = table.insertRow();
+      newRow.setAttribute('data-id', organisation._id);
+      newRow.setAttribute('id', `row-${organisation._id}`);
+      newRow.setAttribute('class', 'table-info');
+      newRow.innerHTML = `
+        <td>${organisation.venue}</td>
+        <td id="availability${organisation._id}">${organisation.availability}</td>
+        <td id="start${organisation._id}">${organisation.start}</td>
+        <td id="end${organisation._id}">${organisation.end}</td>
+        <td id="booked${organisation._id}">${organisation.booked}</td>
+        <td id="phno${organisation._id}">${organisation.phno}</td>
+        <td><a class="btn btn-primary disabled" onclick="bookClass(this)" disable>Book</a></td>
+        <td><a class="btn btn-danger" onclick="deleteVenue('${organisation._id}')">Delete</a></td>
+      `;
+    });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error fetching venues:', error);
   }
-}
-async function freeClass(button) {
-  // Get the row ID from the closest <tr> element
-  const rowId = button.closest('tr').dataset.id;
 
-  console.log('Clicked row ID:', rowId); // Debugging
+      // Handle form submission
+      document.getElementById('organisationForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        fetch('/addOrganisation', {
+          method: 'POST',
+          body: JSON.stringify(Object.fromEntries(formData)),
+          headers: { 'Content-Type': 'application/json' }
+        })
+          .then(response => {
+            if (response.ok) {
+              window.location.reload(); // Reload page to show new data
+            } else {
+              console.error('Failed to add venue');
+            }
+          });
+      });
+    });
 
+    function bookClass(rowId) {
+      fetch('/book-class', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rowId })
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error booking class:', error));
+    }
+
+    function freeClass(rowId) {
+      fetch('/free-class', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rowId })
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error freeing class:', error));
+    }
+    async function deleteVenue(id) {
   try {
-    const response = await fetch('/free-class', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ rowId })
+    const response = await fetch(`/deleteVenue/${id}`, {
+      method: 'DELETE'
     });
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
 
-    const data = await response.json(); 
-
-    // Debugging: Log the data received from the server
-    console.log('Data received:', data);
-    
-    // Update the table with the data returned from the server
-    const row = document.querySelector(`tr[data-id='${rowId}']`);
+    // Remove the row from the table
+    const row = document.querySelector(`tr[data-id='${id}']`);
     if (row) {
-      const availabilityCell = row.querySelector(`#availability${rowId}`);
-      const startCell = row.querySelector(`#start${rowId}`);
-      const endCell = row.querySelector(`#end${rowId}`);
-      const bookedCell = row.querySelector(`#booked${rowId}`);
-      if(data.that_bro != bookedCell.textContent) return
-      const phnoCell = row.querySelector(`#phno${rowId}`);
-      
-
-      // Check if cells exist before setting textContent
-      if (availabilityCell) availabilityCell.textContent = "FREE"
-      if (startCell) startCell.textContent = "----";
-      if (endCell) endCell.textContent = "----";
-      if (bookedCell) bookedCell.textContent = "----";
-      if (phnoCell) phnoCell.textContent = "----";
-      else console.error('Some cells were not found for row ID:', rowId);
-    } else {
-      console.error('Row not found for ID:', rowId);
+      row.remove();
     }
   } catch (error) {
     console.error('Error:', error);
   }
 }
-  
-  </script>
 
+  </script>
 </body>
 </html>
