@@ -130,3 +130,29 @@ export async function delete_venue(req, res) {
     res.status(500).json({ message: 'Failed to delete venue', error: error.message });
   }
 }
+
+export async function get_venue_by_indexx(req, res) {
+  const index = parseInt(req.params.index, 10);
+  try {
+    const venues = await Venue.find({}).sort({ _id: 1 }).skip(index).limit(1);
+    if (venues.length === 0) {
+      return res.status(404).json({ message: 'No venue found at the specified index' });
+    }
+    res.json(venues[0]);
+  } catch (error) {
+    console.error('Error fetching venue by index:', error);
+    res.status(500).json({ message: 'Failed to fetch venue' });
+  }
+}
+
+
+export async function get_venue_by_index(req ,res){
+  try {
+    const { n } = req.body;
+    const nthDocument = await Venue.findOne().skip(n - 1);
+    console.log(nthDocument);
+  } catch (error) {
+    console.error('Error retrieving document:', error);
+  }
+}
+

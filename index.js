@@ -6,7 +6,8 @@ import { fileURLToPath } from "url";
 import cors from 'cors';
 
 // our files
-import { delete_venue,add_organiser, do_signup, do_signin, get_user_name, get_user_phno, add_venue, get_venues } from './db_connect.js';
+  
+import { get_venue_by_index, delete_venue,add_organiser, do_signup, do_signin, get_user_name, get_user_phno, add_venue, get_venues } from './db_connect.js';
 import { feedback_submit, add_event, get_discussions, add_volunteer } from './home.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -36,16 +37,7 @@ app.post("/login/home/organisation", (req, res) => {
   });
 });
 
-app.post('/book-class', (req, res) => {
-  const { rowId } = req.body;
-  const data = {
-    1: { availability: 'Booked', startTime: '8 PM', endTime: '10 PM', bookedBy: get_user_name(), contactNo: get_user_phno() },
-    2: { availability: 'Booked', startTime: '6 PM', endTime: '8 PM', bookedBy: get_user_name(), contactNo: get_user_phno() },
-    3: { availability: 'Booked', startTime: '7 PM', endTime: '9 PM', bookedBy: get_user_name(), contactNo: get_user_phno() },
-    4: { availability: 'Booked', startTime: '4 PM', endTime: '7 PM', bookedBy: get_user_name(), contactNo: get_user_phno() },
-  };
-  res.json(data[rowId] || {});
-});
+app.post('/book-class',get_venue_by_index);
 
 app.post('/free-class', (req, res) => {
   const that_bro = get_user_name();

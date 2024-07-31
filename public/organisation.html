@@ -19,7 +19,6 @@
               <th>End Time</th>
               <th>Booked By</th>
               <th>Contact No</th>
-              <th>Book</th>
               <th>Delete</th>
             </tr> 
           </thead>
@@ -43,11 +42,11 @@
           </div>
           <div class="mb-3">
             <label for="start" class="form-label">Start Time</label>
-            <input value="10.30" type="text" class="form-control" id="start" name="start" required>
+            <input value="10:30" type="time" class="form-control" id="start" name="start" required>
           </div>
           <div class="mb-3">
             <label for="end" class="form-label">End Time</label>
-            <input value="12.45" type="text" class="form-control" id="end" name="end" required>
+            <input value="12:45" type="time" class="form-control" id="end" name="end" required>
           </div>
           <div class="mb-3">
             <label for="booked" class="form-label">Booked By</label>
@@ -84,7 +83,6 @@
         <td id="end${organisation._id}">${organisation.end}</td>
         <td id="booked${organisation._id}">${organisation.booked}</td>
         <td id="phno${organisation._id}">${organisation.phno}</td>
-        <td><a class="btn btn-primary disabled" onclick="bookClass(this)" disable>Book</a></td>
         <td><a class="btn btn-danger" onclick="deleteVenue('${organisation._id}')">Delete</a></td>
       `;
     });
@@ -112,6 +110,7 @@
     });
 
     function bookClass(rowId) {
+      alert(rowId)
       fetch('/book-class', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
