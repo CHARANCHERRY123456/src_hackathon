@@ -46,7 +46,7 @@
                         <td id="availability3">Booked!</td>
                         <td id="start3">7 PM</td>
                         <td id="end3">9 PM</td>
-                        <td id="booked3">Ajithesh</td>
+                        <td id="booked3">demo</td>
                         <td id="phno3">985457342</td>
                         <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
                         <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
@@ -56,18 +56,18 @@
                         <td id="availability4">FREE</td>
                         <td id="start4">4 PM</td>
                         <td id="end4">7 PM</td>
-                        <td id="name4">--</td>
+                        <td id="booked4">--</td>
                         <td id="phno4">---</td>
                         <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
                         <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
                     </tr>
-                </table>
+                  </table>
             </div>
         </div>
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
   <script>
     async function bookClass(button) {
@@ -82,41 +82,47 @@
   }
 
   try {
-    const response = await fetch('/book-class', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ rowId })
-    });
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const data = await response.json();
-
-    // Debugging: Log the data received from the server
-    console.log('Data received:', data);
-
-    // Update the table with the data returned from the server
+    console.log("it is  returning");
     const row = document.querySelector(`tr[data-id='${rowId}']`);
-    if (row) {
-      const availabilityCell = row.querySelector(`#availability${rowId}`);
-      const startCell = row.querySelector(`#start${rowId}`);
-      const endCell = row.querySelector(`#end${rowId}`);
-      const bookedCell = row.querySelector(`#booked${rowId}`);
-      const phnoCell = row.querySelector(`#phno${rowId}`);
+    const pre_availabilityCell = row.querySelector(`#availability${rowId}`);
+    if(pre_availabilityCell.textContent == "FREE"){
+      console.log("it is not returning");
+      const response = await fetch('/book-class', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ rowId })
+      });
 
-      // Check if cells exist before setting textContent
-      if (availabilityCell) availabilityCell.textContent = data.availability;
-      if (startCell) startCell.textContent = data.startTime;
-      if (endCell) endCell.textContent = data.endTime;
-      if (bookedCell) bookedCell.textContent = data.bookedBy;
-      if (phnoCell) phnoCell.textContent = data.contactNo;
-      else console.error('Some cells were not found for row ID:', rowId);
-    } else {
-      console.error('Row not found for ID:', rowId);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+
+      // Debugging: Log the data received from the server
+      console.log('Data received:', data);
+
+      // Update the table with the data returned from the server
+      if (row) {
+        const availabilityCell = row.querySelector(`#availability${rowId}`);
+        const startCell = row.querySelector(`#start${rowId}`);
+        const endCell = row.querySelector(`#end${rowId}`);
+        const bookedCell = row.querySelector(`#booked${rowId}`);
+        const phnoCell = row.querySelector(`#phno${rowId}`);
+
+        // Check if cells exist before setting textContent
+        if (availabilityCell) availabilityCell.textContent = data.availability;
+        if (startCell) startCell.textContent = data.startTime;
+        if (endCell) endCell.textContent = data.endTime;
+        console.log(bookedCell);
+        if (bookedCell) bookedCell.textContent = data.bookedBy;
+        if (phnoCell) phnoCell.textContent = data.contactNo;
+        else console.error('Some cells were not found for row ID:', rowId);
+      } else {
+        console.error('Row not found for ID:', rowId);
+      }
     }
   } catch (error) {
     console.error('Error:', error);
@@ -141,11 +147,11 @@ async function freeClass(button) {
       throw new Error('Network response was not ok');
     }
 
-    const data = await response.json();
+    const data = await response.json(); 
 
     // Debugging: Log the data received from the server
     console.log('Data received:', data);
-
+    
     // Update the table with the data returned from the server
     const row = document.querySelector(`tr[data-id='${rowId}']`);
     if (row) {
@@ -153,10 +159,12 @@ async function freeClass(button) {
       const startCell = row.querySelector(`#start${rowId}`);
       const endCell = row.querySelector(`#end${rowId}`);
       const bookedCell = row.querySelector(`#booked${rowId}`);
+      if(data.that_bro != bookedCell.textContent) return
       const phnoCell = row.querySelector(`#phno${rowId}`);
+      
 
       // Check if cells exist before setting textContent
-      if (availabilityCell) availabilityCell.textContent = "Free!!"
+      if (availabilityCell) availabilityCell.textContent = "FREE"
       if (startCell) startCell.textContent = "----";
       if (endCell) endCell.textContent = "----";
       if (bookedCell) bookedCell.textContent = "----";

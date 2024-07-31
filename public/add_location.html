@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Organisation</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+  <form id="organisationForm" action="/login/home/organisation/add_organisation" method="POST">
+    <div class="form-group">
+      <label for="sac">SAC</label>
+      <input type="text" class="form-control" id="sac" name="sac" required>
+    </div>
+    <div class="form-group">
+      <label for="availability">Availability</label>
+      <input type="text" class="form-control" id="availability" name="availability" required>
+    </div>
+    <div class="form-group">
+      <label for="start">Start Time</label>
+      <input type="text" class="form-control" id="start" name="start" required>
+    </div>
+    <div class="form-group">
+      <label for="end">End Time</label>
+      <input type="text" class="form-control" id="end" name="end" required>
+    </div>
+    <div class="form-group">
+      <label for="booked">Booked</label>
+      <input type="text" class="form-control" id="booked" name="booked" required>
+    </div>
+    <div class="form-group">
+      <label for="phno">Phone Number</label>
+      <input type="text" class="form-control" id="phno" name="phno" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<div class="container mt-4">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>SAC</th>
+        <th>Availability</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Booked</th>
+        <th>Phone Number</th>
+        <th>Book</th>
+        <th>Free</th>
+      </tr>
+    </thead>
+    <tbody id="organisationTable">
+      <tr data-id="4" id="row-4" class="table-warning">
+        <td>SAC</td>
+        <td id="availability4">FREE</td>
+        <td id="start4">4 PM</td>
+        <td id="end4">7 PM</td>
+        <td id="booked4">--</td>
+        <td id="phno4">---</td>
+        <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
+        <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
+      </tr>
+      <!-- New rows will be appended here -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  document.getElementById('organisationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const sac = document.getElementById('sac').value;
+    const availability = document.getElementById('availability').value;
+    const start = document.getElementById('start').value;
+    const end = document.getElementById('end').value;
+    const booked = document.getElementById('booked').value;
+    const phno = document.getElementById('phno').value;
+
+    const table = document.getElementById('organisationTable');
+    const newRow = table.insertRow();
+
+    newRow.innerHTML = `
+      <td>${sac}</td>
+      <td>${availability}</td>
+      <td>${start}</td>
+      <td>${end}</td>
+      <td>${booked}</td>
+      <td>${phno}</td>
+      <td><a class="btn btn-primary" onclick="bookClass(this)">Book</a></td>
+      <td><a class="btn btn-secondary" onclick="freeClass(this)">Free</a></td>
+    `;
+
+    // Optionally, reset the form fields
+    document.getElementById('organisationForm').reset();
+  });
+
+  function bookClass(element) {
+    const row = element.closest('tr');
+    row.classList.add('table-success');
+    // Additional logic for booking the class
+  }
+
+  function freeClass(element) {
+    const row = element.closest('tr');
+    row.classList.remove('table-success');
+    row.classList.add('table-warning');
+    // Additional logic for freeing the class
+  }
+</script>
+
+</body>
+</html>
+

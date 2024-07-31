@@ -70,10 +70,12 @@ const facultySignupSchema = new mongoose.Schema({
 });
 const FacultySignup = mongoose.model('facultySignup', facultySignupSchema);
 
+var user_name = "unknow_user";
 export async function  do_signup(req, res) {
   console.log(req.body);
   try {
     const { name, email, role, branch, password } = req.body;
+    user_name = name;
     if (role == "student") {
       const newUser = new StudentSignup({ name, email, branch, password, role });
       await newUser.save();
@@ -91,14 +93,11 @@ export async function  do_signup(req, res) {
 };
 
 
-
 export async function do_signin(req, res) {
     console.log(req.body);
     try {
       const { email, password } = req.body;
-  
-      // Find user by email
-      
+      // Find user by email    
       const user = await StudentSignup.findOne({ email });
       console.log(user);
       if (!user) {
@@ -110,7 +109,7 @@ export async function do_signin(req, res) {
       if ((password != user.password)) {
         return res.status(400).send('Incorrect password');
       }
-  
+      user_name = user.name
       res.render(__dirname+"/public/home.ejs", {
         user_name: 'charan'
       });
@@ -118,7 +117,12 @@ export async function do_signin(req, res) {
       res.status(500).send(err.message);
     }
   }
-
+export function get_user_name(){
+  return user_name;
+}
+export function get_user_phno(){
+  return 8520811855;
+}
 
 
   // home files will come here 
